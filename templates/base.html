@@ -1,0 +1,47 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% block style %}
+        {% include '_style_loader.html' %}
+    {% endblock %}
+    <title>{% block title %}{% endblock %} | HeadCamp</title>
+    <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}"/>
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+</head>
+<body>
+{% block navbar %}
+    {% include '_navbar.html' %}
+{% endblock %}
+<div class="container-fluid">
+    <div class="row">
+        {% block side_bar %}
+            {% if user.is_authenticated %}
+                {% include 'sidebar.html' %}
+            {% endif %}
+        {% endblock %}
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="row">
+                        <div class="col">
+                            <div class="alert alert-success" role="alert">
+                                {{ message }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+</div>
+{% block scripts %}
+    {% include '_script_loader.html' %}
+{% endblock %}
+</body>
+</html>

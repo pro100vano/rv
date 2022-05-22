@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}
+    Новости
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <h5>Новости</h5>
+        </div>
+    </div>
+    <div class="row" style="gap: 1rem">
+        {% for new in object_list %}
+            <div class="card shadow mt-3 col-md-3">
+                <div class="card-body row flex-wrap" style="flex: inherit">
+                    <img class="w-100" src="/media/{{ new.image.name }}" height="240px">
+                    <h4 class="w-100 mb-0">{{ new.title }}</h4><br>
+                    <small class="mb-3">
+                        {{ new.date_created | date:"d.m.Y" }}
+                    </small>
+                    <p>
+                        {{ new.text | safe }}
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

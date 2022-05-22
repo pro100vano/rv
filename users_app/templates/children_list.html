@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Список детей
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{% url 'child_create' %}" class="btn bg-info text-white"> + Добавить ребенка</a>
+        </div>
+    </div>
+    <div class="row" style="gap: 1rem;">
+        {% for child in object_list %}
+            <div class="card shadow mt-3 col-md-5">
+                <div class="card-body row">
+                    <div class="col-md-3">
+                        <img class="w-100" src="/media/{{ child.profilemodel.avatar.name }}">
+                    </div>
+                    <div class="col-md-9">
+                        <p>
+                            <b>Имя, фамилия:</b> {{ child.first_name }} {{ child.last_name }}
+                        </p>
+                        <p>
+                            <b>Пользователь:</b> {{ child.username }}
+                        </p>
+                        <p>
+                            <b>E-mail:</b> {{ child.email }}
+                        </p>
+                        <p>
+                            <a href="{% url 'child_update' pk=child.profilemodel.pk %}" class="btn bg-info text-white">Изменить данные</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            Вы еще не добавили детей!
+        {% endfor %}
+    </div>
+{% endblock %}

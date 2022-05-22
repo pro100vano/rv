@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Дети
+{% endblock %}
+
+{% block content %}
+    <h5>Список детей</h5>
+    <div class="row">
+        <div class="col">
+            <form action="{% url 'child_search' %}" class="w-50">
+                <label>
+                    <input type="text" name="child_search" class="form-control" placeholder="Введите имя или фамилию">
+                </label>
+                <button class="btn bg-info text-white">Искать</button>
+            </form>
+        </div>
+    </div>
+    {% include 'children/table.html' %}
+{% endblock %}

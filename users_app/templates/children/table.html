@@ -1,0 +1,21 @@
+<div class="row" style="gap: 1rem;">
+    {% for child in object_list %}
+        <div class="card shadow mt-3 col-md-5">
+            <div class="card-body row">
+                <div class="col-md-2">
+                    <img class="w-100" src="/media/{{ child.profilemodel.avatar.name }}">
+                </div>
+                <div class="col-md-10">
+                    <p>
+                        <b>Имя, фамилия:</b> {{ child.first_name }} {{ child.last_name }}
+                    </p>
+                    <p class="text-right">
+                        <a href="{% url 'child_detail' pk=child.profilemodel.pk %}" class="btn bg-info text-white">Подробнее</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        Список пуст
+    {% endfor %}
+</div>

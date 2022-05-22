@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}
+    Мероприятия
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <h5>Мероприятия</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            {% for event in object_list %}
+                <div class="card shadow mt-3">
+                    <div class="card-body row">
+                        <div class="col-md-3">
+                            <img class="w-100" src="/media/{{ event.image.name }}">
+                        </div>
+                        <div class="col-md-9">
+                            <p>
+                                <b>Название:</b> {{ event.title }}
+                            </p>
+                            <p>
+                                <b>Тип:</b> {{ event.get_type_display }}
+                            </p>
+                            <p>
+                                <b>Дата проведения:</b> {{ event.date | date:"d.m.Y" }}
+                            </p>
+                            <p>
+                                {{ event.description | safe }}
+                            </p>
+                            <p>
+                                {% if user in event.like.all %}
+                                    <a href="{% url 'events:like' pk=event.pk %}"
+                                       class="btn bg-danger text-white">Не нравится</a>
+                                {% else %}
+                                    <a href="{% url 'events:like' pk=event.pk %}"
+                                       class="btn bg-info text-white">Нравится</a>
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

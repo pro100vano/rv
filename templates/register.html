@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Регистрация
+{% endblock %}
+
+{% block content %}
+    <style>
+        label, .help-block{
+            display: none
+        }
+    </style>
+    <div class="row">
+        <div class="col-md-4 mx-auto text-center form p-4">
+            <legend>Регистрация</legend>
+            <div class="row">
+                <div class="col">
+                    {% crispy form %}
+                </div>
+            </div>
+            <p>
+                Уже зарегистрированы? <a href="{% url 'login' %}">Войдите!</a>
+            </p>
+        </div>
+    </div>
+{% endblock %}

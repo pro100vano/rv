@@ -1,0 +1,22 @@
+{% load static %}
+<nav class="navbar sticky-top navbar-light bg-light flex-nowrap p-0 shadow">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">
+        <img src="{% static 'images/logo.png' %}" alt="KidsBook" height="40px">
+        <b class="text-info">Kids<span class="text-danger">B</span>ook</b>
+    </a>
+    <div class="w-100">
+
+    </div>
+    <ul class="navbar-nav col-md-2 text-right">
+        {% if user.first_name is not '' %}
+            {{ user.first_name }} {{ user.last_name }}
+        {% else %}
+            {{ user.username }}
+        {% endif %}
+    </ul>
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="{% url 'logout' %}">Выход</a>
+        </li>
+    </ul>
+</nav>

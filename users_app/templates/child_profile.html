@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Профиль ребенка
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow">
+                <div class="card-header bg-info text-white">
+                    Редактировать профиль ребенка
+                </div>
+                <div class="card-body">
+                    {% crispy form %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card shadow mt-3">
+        <div class="card-header text-info">
+            Статистика по ребенку
+        </div>
+        <div class="card-body">
+            <p>
+                <b>Развлечение:</b> {{ razvl }}
+            </p>
+            <p>
+                <b>Творчество:</b> {{ tvorch }}
+            </p>
+            <p>
+                <b>Спорт:</b> {{ sport }}
+            </p>
+        </div>
+    </div>
+    <div class="card shadow mt-3">
+        <div class="card-header text-info">
+            Процедурные листы
+        </div>
+        <div class="card-body">
+            {% for item in procedural %}
+                <a href="{% url 'procedural_show' pk=item.id %}" class="d-block">
+                    Процедурный лист от {{ item.date | date:"d.m.Y" }}
+                </a>
+            {% empty %}
+                Процедруных листов нет
+            {% endfor %}
+        </div>
+    </div>
+    <div class="card shadow mt-3 mb-3">
+        <div class="card-header text-info">
+            Список достижений
+        </div>
+        <div class="card-body">
+            {% for item in events_status %}
+                <a href="#" class="d-block">
+                    Жернал успеваемости ({{ item.date_created | date:"d.m.Y" }}) {{ item.get_event_display }}
+                    - {{ item.status }}
+                </a>
+            {% empty %}
+                Журнал пуст
+            {% endfor %}
+        </div>
+    </div>
+    <h4 class="text-info mt-4">Меропиятия отмеченые ребенком</h4>
+    {% for event in likes_events %}
+        <div class="card shadow mt-3">
+            <div class="card-body row">
+                <div class="col-md-3">
+                    <img class="w-100" src="/media/{{ event.image.name }}">
+                </div>
+                <div class="col-md-9">
+                    <p>
+                        <b>Название:</b> {{ event.title }}
+                    </p>
+                    <p>
+                        <b>Тип:</b> {{ event.get_type_display }}
+                    </p>
+                    <p>
+                        <b>Дата проведения:</b> {{ event.date | date:"d.m.Y" }}
+                    </p>
+                    <p>
+                        {{ event.description | safe }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

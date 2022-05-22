@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Поиск в списке детей
+{% endblock %}
+
+{% block content %}
+    <h5>Поиск в списке детей</h5>
+    {% include 'children/table.html' with object_list=children %}
+{% endblock %}

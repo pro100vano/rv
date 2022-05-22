@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Пожалуйста, войдите
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-4 mx-auto text-center form p-4">
+            <legend>Пожалуйста, войдите</legend>
+            <form action="{% url 'login' %}" role="form" method="post">
+                {% csrf_token %}
+                <div class="form-group{% if form.username.errors %} has-error{% endif %}">
+                    {% if form.username.errors %}
+                        {{ form.username.errros }}
+                    {% endif %}
+                    <input type="text" id="username" name="username" placeholder="Пользователь" class="form-control">
+                </div>
+                <div class="form-group{% if form.password.errors %} has-error{% endif %}">
+                    {% if form.password.errors %}
+                        {{ form.password.errros }}
+                    {% endif %}
+                    <input type="password" id="password" name="password" placeholder="Пароль" class="form-control">
+                </div>
+                <input type="submit" value="Войти" class="button btn btn-info btn-block">
+                <p>
+                    Еще нет аккаунта? <a href="{% url 'register' %}">Зарегистрироваться</a>
+                </p>
+            </form>
+        </div>
+    </div>
+{% endblock %}

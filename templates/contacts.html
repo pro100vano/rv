@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Информация родителям
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-6 mx-auto mb-3">
+            <h4 class="text-center">Карта </h4>
+            <img src="{% static 'images/2.png' %}" alt="Контакты"
+                 class="w-100 mx-auto d-block img-thumbnail">
+            <h4 class="text-center mt-3">Контакты </h4>
+            <p>
+                Санаторий "Вита" ООО<br>
+                353440, Краснодарский край, г. Анапа, Пионерский проспект 253<br>
+                Телефон: <a href="tel: 88613397888">+7 (86133) 97-888</a><br>
+                E-mail: <a href="mailto: vita-anapa@mail.ru">vita-anapa@mail.ru</a><br>
+                Режим работы: <b>c 8:00 до 17:00</b><br>
+                Выходной: <b>СБ, ВС</b><br>
+                График приема руководителем:
+                <b>ВТ, ЧТ, с 9:00 до 11:00</b><br>
+            </p>
+
+        </div>
+    </div>
+{% endblock %}
